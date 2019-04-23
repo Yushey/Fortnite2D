@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+   <link rel="stylesheet" type="text/css" href="style.css" />
+   <style>
+      .content {
+      max-width: 500px;
+      margin: auto;
+      }
+      body {
+      background-repeat: repeat-x;
+      }
+      td {
+         text-align: center;
+      }
+      input[type=text], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      }
+      input[type=password], select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      }
+      input[type=submit] {
+      padding:5px 15px; 
+      background:#ccc; 
+      border:0 none;
+      cursor:pointer;
+      -webkit-border-radius: 5px;
+      border-radius: 5px; 
+      }
+      input[type=reset] {
+      padding:5px 15px; 
+      background:#ccc; 
+      border:0 none;
+      cursor:pointer;
+      -webkit-border-radius: 5px;
+      border-radius: 5px; 
+      }
+      .asterisk_input:after {
+      content:" *"; 
+      color: #e32;
+      position: absolute; 
+      margin: 0px 0px 0px -20px; 
+      font-size: xx-large; 
+      padding: 0 5px 0 0; }
+      .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 17px;
+      }
+      .switch input { 
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+      .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      }
+      .slider:before {
+      position: absolute;
+      content: "";
+      height: 13px;
+      width: 13px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+      }
+      input:checked + .slider {
+      background-color: #2196F3;
+      }
+      input:focus + .slider {
+      box-shadow: 0 0 1px #2196F3;
+      }
+      input:checked + .slider:before {
+      -webkit-transform: translateX(13px);
+      -ms-transform: translateX(13px);
+      transform: translateX(13px);
+      }
+      /* Rounded sliders */
+      .slider.round {
+      border-radius: 34px;
+      }
+      .slider.round:before {
+      border-radius: 50%;
+      }
+   </style>
+   <head>
+      <link rel="icon" href="icons/icon.png">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta http-equiv="EXPIRES" content="-1">
+      <script src="jquery-3.3.1.min.js"></script>
+      <script src="rest.js"></script>
+      <script language="javascript" src="model.js"> </script>
+      <script language="javascript" src="view.js"> </script>
+      <script language="javascript" src="controller.js"> </script>
+      <style>
+         canvas {
+         cursor: crosshair;
+         }
+      </style>
+   </head>
+   <title>Fortnite 2D</title>
+   <body>
+      <div id = "login">
+         <h1>Login</h1>
+         <p>Welcome to Fortnite 2D</p>
+         <input type="text" placeholder = "Enter your username" id = "username" required>
+         <input type="password" placeholder = "Enter your password" id = "password">
+         <input type="submit" id="Submit" value="Submit">
+         <input type="submit" id="Register" value = "Register an Account">
+         <p id="msglog"></p>
+         <center>
+            <div style="float:center;">
+               <table cellpadding="10"cellspacing="0">
+                  <caption>
+                     <h3>Highscores</h3>
+                  </caption>
+                  <tr>
+                     <th>Username</th>
+                     <th>Kill Count</th>
+                  </tr>
+                  <tr>
+                     <td id = "0u"></td>
+                     <td id = "0k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "1u"></td>
+                     <td id = "1k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "2u"></td>
+                     <td id = "2k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "3u"></td>
+                     <td id = "3k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "4u"></td>
+                     <td id = "4k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "5u"></td>
+                     <td id = "5k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "6u"></td>
+                     <td id = "6k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "7u"></td>
+                     <td id = "7k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "8u"></td>
+                     <td id = "8k" style="float:right;"></td>
+                  </tr>
+                  <tr>
+                     <td id = "9u"></td>
+                     <td id = "9k" style="float:right;"></td>
+                  </tr>
+               </table>
+            </div>
+         </center>
+      </div>
+      <div id = "register">
+         <h1>Register</h1>
+         <p>Please enter your information to sign up for an account.</p>
+         <span class="asterisk_input">  </span> 
+         <input type="text" placeholder = "Enter your username" id = "usernamereg" required> <span class="asterisk_input">  </span> 
+         <input type="password" placeholder = "Enter your password" id = "passwordreg" required> <span class="asterisk_input">  </span> 
+         <input type="password" placeholder = "Re-enter your password" id = "passwordrpt" required>
+         <input type="submit" id="registerbtn" value="Register">
+         <input type="submit" id="loginreg" value = "Back to Login">
+         <p id="msg"></p>
+      </div>
+      <div id = settings>
+         <h1>User Settings</h1>
+         <input type="text" id = "usersettings" disabled>
+         <input type="password" placeholder = "Enter your current password" id = "pswd">
+         <input type="password" placeholder = "Enter your new password" id = "pswdnew">
+         <input type="password" placeholder = "Re-enter your new password" id = "pswdrpt">
+         <input type="submit" id="settingsbtn" value="Change Password" style="background-color: #f44141;">
+         <input type="submit" id="returngame" value="Return to Game">
+         <p id="msgsettings"></p>
+         <label class="switch">
+         <input type="checkbox" id = "fps">
+         <span class="slider round"></span>
+         </label>
+         <label>
+         Show FPS
+         </label>
+      </div>
+   </body>
+   <div id = "game" unselectable="on" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" onselectstart="return false;" onmousedown="return false;">
+      <body bgcolor="ffffff"">
+         <center>
+            <h1>Fortnite 2D</h1>
+            <canvas id="stage" width="800" height="800" style="border:1px solid black;"></canvas>
+            <div style = "float: right;">
+               <fieldset style="float: left;">
+                  <legend>Instructions</legend>
+                  <div style="float: left;">
+                     <p style="float: left;">W: Move Up</p><br>
+                     <p style="float: left;">A: Move Left</p><br>
+                     <p style="float: left;">S: Move Down</p><br>
+                     <p style="float: left;">D: Move Right</p><br>
+                     <p style="float: left;">B: Toggle Build Mode</p><br>
+                     <p style="float: left;">E: Pick up items</p><br>
+                     <p style="float: left;">1: Gun Slot 1</p><br>
+                     <p style="float: left;">2: Gun Slot 2</p><br>
+                     <p style="float: left;">3: Gun Slot 3</p><br>
+                     <p style="float: left;">4: Gun Slot 4</p><br>
+                     <p style="float: left;">5: Gun Slot 5</p><br>
+                  </div>
+               </fieldset>
+            </div>
+            <center>
+               <input type="submit" id="logout" value="Logout"></td>
+               <input type="submit" id="settings1" value="Settings"></td>
+               <p id="killcount"></p>
+               <fieldset>
+                  <legend>Legend</legend>
+                  <table class="legend" cellpadding="10"cellspacing="10">
+                     <td style="display:none;"> <img src="./icons/blank.gif" id="blankImage" width="50">  </td>
+                     <td style="display:none;"> <img src="./icons/bullet.png" id="bullet" width="50"></td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/grass.png" id="grassTile" width="50">
+                        <p class="tile_p">Grass</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/stone.jpg" id="stoneTile" width="50">
+                        <p class="tile_p">Stone</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/bush.png" id="Bush" width="50">
+                        <p class="tile_p">Bush</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/water.png" id="Water" width="50">
+                        <p class="tile_p">Water</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/ice.png" id="Ice" width="50">
+                        <p class="tile_p">Ice</p>
+                     </td>
+                     <td style="display:none;"> <img src="./icons/shot.png" id="shot" width="50"></td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/pistol.png" id="pistol" width="50">
+                        <p class="tile_p">Pistol</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/lightammo.png" id="lightammo" width="50">
+                        <p class="tile_p">Light Ammo</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/ar.png" id="ar" width="50">
+                        <p class="tile_p">Assault Rifle</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/medammo.png" id="medammo" width="50">
+                        <p class="tile_p">Medium Ammo</p>
+                     </td>
+                     <td style="vertical-align:bottom;">
+                        <img src="./icons/portal.png" id="Portal" width="50">
+                        <p class="tile_p">Transporter Pod</p>
+                     </td>
+                     <td style="display:none;"><img src="./icons/home.png" id="home" width="50"></td>
+                     <td style="display:none;"> <img src="./icons/framework.png" id="framework" width="50"></td>
+                     <td style="display:none;"> <img src="./icons/frame1.png" id="frame1" width="50"></td>
+                     <td style="display:none;"> <img src="./icons/frame2.png" id="frame2" width="50"></td>
+                  </table>
+               </fieldset>
+            </div>
+            </center>
+         </center>
+      </body>
+   </div>
+</html>
